@@ -540,3 +540,860 @@ echo $mahasiswa1->aksesFitur(); // Output: Mahasiswa Budi Santoso (123456) dari 
 
 ## Jobsheet 3
 
+Instruksi Kerja
+1. Inheritance
+
+o Buat kelas Person dengan atribut name dan metode getName().
+
+o Buat kelas Student yang mewarisi dari Person dan tambahkan atribut studentID
+serta metode getStudentID().
+
+2. Polymorphism
+
+o Buat kelas Teacher yang juga mewarisi dari Person dan tambahkan atribut
+teacherID.
+
+o Override metode getName() di kelas Student dan Teacher untuk menampilkan
+format berbeda.
+3. Encapsulation
+
+o Ubah atribut name dan studentID dalam kelas Student menjadi private.o Tambahkan metode setter dan getter untuk mengakses dan mengubah nilai
+atribut name dan studentID.
+4. Abstraction
+
+o Buat kelas abstrak Course dengan metode abstrak getCourseDetails().
+
+o Buat kelas OnlineCourse dan OfflineCourse yang mengimplementasikan
+getCourseDetails() untuk memberikan detail yang berbeda
+
+### Langkah Langkah  Abstraksi
+
+1. Membuat Kelas Abstrak Course:
+
+    Kelas abstrak Course didefinisikan menggunakan keyword abstract. Kelas ini memiliki satu metode abstrak bernama getCourseDetails().
+    Kelas abstrak tidak bisa di-instantiate secara langsung, tetapi berfungsi sebagai cetakan dasar yang mewajibkan kelas turunannya mengimplementasikan metode yang dideklarasikan secara abstrak.
+   
+   ```php
+   <?php
+// Kelas abstrak Course dengan metode abstrak getCourseDetails()
+abstract class Course {
+    abstract public function getCourseDetails();
+}
+   ```
+
+2. Membuat Kelas OnlineCourse:
+
+    Kelas OnlineCourse adalah turunan dari kelas Course, sehingga ia wajib mengimplementasikan metode abstrak getCourseDetails() dari kelas induknya.
+    Kelas ini memiliki dua atribut privat, yaitu $courseName untuk nama kursus, dan $duration untuk durasi kursus dalam jam.
+    Konstruktor (__construct) digunakan untuk menetapkan nilai dari $courseName dan $duration ketika objek OnlineCourse dibuat.
+    Metode getCourseDetails() mengembalikan string yang berisi detail kursus online.
+
+```php
+class OnlineCourse extends Course {
+    private $courseName;
+    private $duration;
+
+    public function __construct($courseName, $duration) {
+        $this->courseName = $courseName;
+        $this->duration = $duration;
+    }
+
+    public function getCourseDetails() {
+        return "Online Course: " . $this->courseName . ", Duration: " . $this->duration . " hours";
+    }
+}
+
+```
+
+3. Membuat Kelas OfflineCourse:
+
+    Sama seperti OnlineCourse, OfflineCourse adalah turunan dari kelas Course dan harus mengimplementasikan metode getCourseDetails().
+    Kelas ini memiliki dua atribut privat, yaitu $courseName untuk nama kursus, dan $location untuk lokasi tempat kursus diadakan.
+    Konstruktor digunakan untuk menetapkan nilai dari $courseName dan $location.
+    Metode getCourseDetails() mengembalikan string yang berisi detail kursus offline.
+
+   ```php
+   class OfflineCourse extends Course {
+    private $courseName;
+    private $location;
+
+    public function __construct($courseName, $location) {
+        $this->courseName = $courseName;
+        $this->location = $location;
+    }
+
+    public function getCourseDetails() {
+        return "Offline Course: " . $this->courseName . ", Location: " . $this->location;
+    }
+}
+
+   ```
+
+4. Membuat Objek OnlineCourse:
+
+    Objek dari kelas OnlineCourse dibuat dengan memanggil konstruktornya dan memberikan parameter "PHP Programming" sebagai nama kursus dan 20 sebagai durasi kursus dalam jam.
+
+```php
+$onlineCourse = new OnlineCourse("PHP Programming", 20);
+```
+
+5. Membuat Objek OfflineCourse:
+
+    Objek dari kelas OfflineCourse dibuat dengan memanggil konstruktornya dan memberikan parameter "Web Development" sebagai nama kursus dan "Jakarta" sebagai lokasi kursus.
+
+   ```php
+   $offlineCourse = new OfflineCourse("Web Development", "Jakarta");
+
+   ```
+7. Menampilkan Output:
+
+    Metode getCourseDetails() dari objek onlineCourse dipanggil untuk menampilkan detail kursus online. Output yang dihasilkan adalah: Online Course: PHP Programming, Duration: 20 hours.
+    Metode getCourseDetails() dari objek offlineCourse dipanggil untuk menampilkan detail kursus offline. Output yang dihasilkan adalah: Offline Course: Web Development, Location: Jakarta.
+
+    ```php
+   echo $onlineCourse->getCourseDetails();
+echo "<br>";
+echo $offlineCourse->getCourseDetails();
+
+  
+   ```
+
+### Coding Abstraksi
+
+```php
+<?php
+// Kelas abstrak Course dengan metode abstrak getCourseDetails()
+abstract class Course {
+    abstract public function getCourseDetails();
+}
+
+// Kelas OnlineCourse yang mengimplementasikan getCourseDetails()
+class OnlineCourse extends Course {
+    private $courseName;
+    private $duration;
+
+    public function __construct($courseName, $duration) {
+        $this->courseName = $courseName;
+        $this->duration = $duration;
+    }
+
+    public function getCourseDetails() {
+        return "Online Course: " . $this->courseName . ", Duration: " . $this->duration . " hours";
+    }
+}
+
+// Kelas OfflineCourse yang mengimplementasikan getCourseDetails()
+class OfflineCourse extends Course {
+    private $courseName;
+    private $location;
+
+    public function __construct($courseName, $location) {
+        $this->courseName = $courseName;
+        $this->location = $location;
+    }
+
+    public function getCourseDetails() {
+        return "Offline Course: " . $this->courseName . ", Location: " . $this->location;
+    }
+}
+
+// Membuat objek dari OnlineCourse
+$onlineCourse = new OnlineCourse("PHP Programming", 20);
+
+// Membuat objek dari OfflineCourse
+$offlineCourse = new OfflineCourse("Web Development", "Jakarta");
+
+// Menampilkan output
+echo $onlineCourse->getCourseDetails(); // Output: Online Course: PHP Programming, Duration: 20 hours
+echo "<br>";
+echo $offlineCourse->getCourseDetails(); // Output: Offline Course: Web Development, Location: Jakarta
+?>
+
+```
+### Output
+![image](https://github.com/user-attachments/assets/3f484138-2720-4c2a-896f-84ca0b79d85e)
+
+### Langkah Langkah Enkapsulasi
+
+1. Membuat Kelas Person:
+
+Kelas Person memiliki satu atribut privat $name yang menyimpan nama seseorang.
+Konstruktor (__construct) digunakan untuk menetapkan nilai atribut $name ketika objek Person dibuat.
+Terdapat dua metode:
+getName(): Mengembalikan nilai dari atribut $name.
+setName($name): Mengubah nilai dari atribut $name.
+
+```php
+class Person {
+    private $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+}
+
+```
+
+2. Membuat Kelas Student yang Mewarisi dari Person:
+
+Kelas Student adalah subclass dari kelas Person dan mewarisi semua atribut dan metode dari kelas induk.
+Kelas ini menambahkan atribut privat baru yaitu $studentID, yang menyimpan ID mahasiswa.
+Konstruktor __construct() di kelas Student memanggil konstruktor dari kelas induk (Person) menggunakan parent::__construct($name), lalu menetapkan nilai untuk $studentID.
+Metode tambahan:
+getStudentID(): Mengembalikan nilai dari atribut $studentID.
+setStudentID($studentID): Mengubah nilai dari atribut $studentID.
+
+```php
+class Student extends Person {
+    private $studentID;
+
+    public function __construct($name, $studentID) {
+        parent::__construct($name); // Memanggil constructor dari kelas induk (Person)
+        $this->studentID = $studentID;
+    }
+
+    public function getStudentID() {
+        return $this->studentID;
+    }
+
+    public function setStudentID($studentID) {
+        $this->studentID = $studentID;
+    }
+}
+
+```
+
+3. Membuat Objek Student:
+
+Objek Student dibuat dengan memanggil konstruktor dan memberikan dua parameter: "Alice" untuk nama dan "S12345" untuk ID mahasiswa.
+```php
+$student = new Student("Alice", "S12345");
+
+```
+
+4. Menampilkan Nama dan studentID:
+
+Memanggil metode getName() untuk mendapatkan dan menampilkan nama dari objek Student. Output yang dihasilkan adalah: Name: Alice.
+Memanggil metode getStudentID() untuk mendapatkan dan menampilkan ID mahasiswa dari objek Student. Output yang dihasilkan adalah: Student ID: S12345.
+
+```php
+echo "Name: " . $student->getName() . "<br>";
+echo "Student ID: " . $student->getStudentID() . "<br>";
+
+```
+
+5. Mengubah Nama dan studentID:
+
+Metode setName("Meilita") dipanggil untuk mengubah nama menjadi "Meilita".
+Metode setStudentID("S67890") dipanggil untuk mengubah ID mahasiswa menjadi "S67890".
+
+```php
+$student->setName("Meilita");
+$student->setStudentID("S67890");
+```
+
+6. Menampilkan Nama dan studentID yang Telah Diubah:
+
+Setelah nilai diubah, metode getName() dan getStudentID() dipanggil kembali untuk menampilkan nama dan ID mahasiswa yang baru.
+Outputnya adalah:
+Updated Name: Meilita
+Updated Student ID: S67890
+
+```php
+echo "Updated Name: " . $student->getName() . "<br>";
+echo "Updated Student ID: " . $student->getStudentID() . "<br>";
+
+```
+
+### Coding Enkapsulasi
+
+```php
+<?php
+// Kelas Person dengan atribut name dan metode getName()
+class Person {
+    private $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+}
+
+// Kelas Student yang mewarisi dari Person dan menambahkan atribut studentID
+class Student extends Person {
+    private $studentID;
+
+    public function __construct($name, $studentID) {
+        parent::__construct($name); // Memanggil constructor dari kelas induk (Person)
+        $this->studentID = $studentID;
+    }
+
+    // Getter untuk studentID
+    public function getStudentID() {
+        return $this->studentID;
+    }
+
+    // Setter untuk studentID
+    public function setStudentID($studentID) {
+        $this->studentID = $studentID;
+    }
+}
+
+// Membuat objek dari kelas Student
+$student = new Student("Alice", "S12345");
+
+// Menampilkan nama dan studentID dari objek Student
+echo "Name: " . $student->getName() . "<br>"; // Output: Name: Alice
+echo "Student ID: " . $student->getStudentID() . "<br>"; // Output: Student ID: S12345
+
+// Mengubah name dan studentID
+$student->setName("Meilita");
+$student->setStudentID("S67890");
+
+// Menampilkan nama dan studentID yang telah diubah
+echo "Updated Name: " . $student->getName() . "<br>"; // Output: Updated Name: Bob
+echo "Updated Student ID: " . $student->getStudentID() . "<br>"; // Output: Updated Student ID: S67890
+?>
+```
+### Output Enkapsulasi
+![image](https://github.com/user-attachments/assets/b633ff91-c258-4004-9519-d4eb467ba72b)
+
+### Langkah Langkah Inheritance
+
+1. Kelas Person:
+
+Kelas Person memiliki atribut protected $name, yang memungkinkan akses dari kelas yang mewarisinya, seperti kelas Student.
+Konstruktor (__construct) menerima parameter $name dan menetapkan nilai tersebut ke atribut $name.
+Metode getName() digunakan untuk mengembalikan nilai dari atribut $name.
+
+```php
+class Person {
+    protected $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+```
+2. Kelas Student yang Mewarisi dari Person:
+
+Kelas Student mewarisi kelas Person, sehingga Student mendapatkan akses ke semua properti dan metode dari kelas induk.
+Atribut protected $studentID ditambahkan untuk menyimpan ID mahasiswa.
+Konstruktor __construct() pada kelas Student memanggil konstruktor dari kelas induk (Person) menggunakan parent::__construct($name) untuk menetapkan nilai $name, lalu menetapkan nilai $studentID.
+Metode getStudentID() digunakan untuk mengembalikan nilai dari atribut $studentID.
+
+```php
+class Student extends Person {
+    protected $studentID;
+
+    public function __construct($name, $studentID) {
+        parent::__construct($name); // Memanggil constructor dari kelas induk (Person)
+        $this->studentID = $studentID;
+    }
+
+    public function getStudentID() {
+        return $this->studentID;
+    }
+}
+
+```
+
+3. Membuat Objek Student:
+
+Objek Student dibuat dengan memanggil konstruktor dan memberikan dua parameter: "Eka Wulan Yuniarsih" sebagai nama dan "230202059" sebagai ID mahasiswa.
+
+```php
+$student = new Student("Eka Wulan Yuniarsih", "230202059");
+
+```
+
+4. Menampilkan Nama dan studentID:
+
+Metode getName() dari kelas induk Person dipanggil untuk menampilkan nama. Output: Name: Eka Wulan Yuniarsih.
+Metode getStudentID() dipanggil untuk menampilkan ID mahasiswa. Output: Student ID: 230202059.
+
+```php
+echo "Name: " . $student->getName() . "\n";
+echo "Student ID: " . $student->getStudentID() . "\n";
+
+```
+
+### Coding inheritance
+
+```php
+<?php
+// Kelas Person dengan atribut name dan metode getName()
+class Person {
+    protected $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+}
+
+// Kelas Student yang mewarisi dari Person dan menambahkan atribut studentID serta metode getStudentID()
+class Student extends Person {
+    protected $studentID;
+
+    public function __construct($name, $studentID) {
+        parent::__construct($name); // Memanggil constructor dari kelas induk (Person)
+        $this->studentID = $studentID;
+    }
+
+    public function getStudentID() {
+        return $this->studentID;
+    }
+}
+
+// Membuat objek dari kelas Student
+$student = new Student("Eka Wulan Yuniarsih", "230202059");
+
+// Menampilkan nama dan studentID dari objek Student
+echo "Name: " . $student->getName() . "\n";
+echo "Student ID: " . $student->getStudentID() . "\n";
+?>
+```
+### Output Inheritance
+![image](https://github.com/user-attachments/assets/255e6d02-70aa-4577-9483-dd619b688fd9)
+
+### Langkah Langkah Pholimorphism
+
+1. Kelas Pengguna:
+
+Kelas Pengguna berfungsi sebagai superclass atau kelas induk.
+Atribut protected $nama digunakan untuk menyimpan nama pengguna, dan bisa diakses oleh kelas yang mewarisinya (seperti Dosen dan Mahasiswa).
+Konstruktor (__construct) menerima parameter $nama dan menetapkannya ke atribut $nama.
+Metode aksesFitur() adalah metode yang nantinya akan di-override oleh subclass, tetapi di sini, ia memberikan output umum untuk pengguna biasa.
+Metode getNama() mengembalikan nilai dari atribut $nama
+
+```php
+class Pengguna {
+    protected $nama;
+
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    public function aksesFitur() {
+        echo "Pengguna umum mengakses fitur.<br>";
+    }
+
+    public function getNama() {
+        return $this->nama;
+    }
+}
+
+```
+
+2. Kelas Dosen:
+
+Kelas Dosen adalah subclass yang mewarisi dari kelas Pengguna.
+Atribut privat $mataKuliah ditambahkan untuk menyimpan mata kuliah yang diampu dosen.
+Konstruktor __construct memanggil konstruktor dari kelas induk (Pengguna) menggunakan parent::__construct($nama) untuk menetapkan nama dosen, dan juga menetapkan mata kuliah.
+Metode aksesFitur() di-override untuk menampilkan fitur khusus yang hanya dapat diakses oleh dosen.
+Metode getMataKuliah() mengembalikan nilai dari atribut $mataKuliah
+
+```php
+class Dosen extends Pengguna {
+    private $mataKuliah;
+
+    public function __construct($nama, $mataKuliah) {
+        parent::__construct($nama);
+        $this->mataKuliah = $mataKuliah;
+    }
+
+    public function aksesFitur() {
+        echo "Dosen " . $this->getNama() . " dapat mengakses fitur untuk mengelola nilai dan mata kuliah.<br>";
+    }
+
+    public function getMataKuliah() {
+        return $this->mataKuliah;
+    }
+}
+
+```
+
+3. Kelas Mahasiswa:
+
+Kelas Mahasiswa juga merupakan subclass yang mewarisi dari kelas Pengguna.
+Atribut privat $nim ditambahkan untuk menyimpan NIM (Nomor Induk Mahasiswa).
+Konstruktor __construct memanggil konstruktor dari kelas induk (Pengguna) menggunakan parent::__construct($nama) untuk menetapkan nama mahasiswa, dan juga menetapkan NIM.
+Metode aksesFitur() di-override untuk menampilkan fitur yang dapat diakses oleh mahasiswa, seperti melihat nilai dan jadwal kuliah.
+Metode getNim() mengembalikan nilai dari atribut $nim.
+
+```php
+class Mahasiswa extends Pengguna {
+    private $nim;
+
+    public function __construct($nama, $nim) {
+        parent::__construct($nama);
+        $this->nim = $nim;
+    }
+
+    public function aksesFitur() {
+        echo "Mahasiswa " . $this->getNama() . " dapat mengakses fitur untuk melihat nilai dan jadwal kuliah.<br>";
+    }
+
+    public function getNim() {
+        return $this->nim;
+    }
+}
+
+```
+
+4. Instansiasi Objek Dosen dan Mahasiswa:
+
+Objek Dosen ($dosen1) diinstansiasi dengan nama "Prih Diantoro Abda'u" dan mata kuliah "Pemrograman Web".
+Objek Mahasiswa ($mahasiswa1) diinstansiasi dengan nama "Anastasya Putri" dan NIM "123456789".
+
+```php
+$dosen1 = new Dosen("Prih Diantoro Abda'u", "Pemrograman Web");
+$mahasiswa1 = new Mahasiswa("Anastasya Putri", "123456789");
+
+```
+
+5. Memanggil Metode aksesFitur():
+
+Metode aksesFitur() dipanggil pada objek Dosen dan Mahasiswa. Karena metode ini di-override di kedua subclass, outputnya akan menyesuaikan dengan siapa yang memanggilnya.
+
+```php
+$dosen1->aksesFitur();
+$mahasiswa1->aksesFitur();
+
+```
+
+### Coding Pholimorphism
+
+```php
+<?php
+// Class Pengguna sebagai superclass
+class Pengguna {
+    protected $nama;
+
+    // Constructor untuk menginisialisasi atribut nama
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    // Metode aksesFitur, akan di-overriden oleh subclass
+    public function aksesFitur() {
+        echo "Pengguna umum mengakses fitur.<br>";
+    }
+
+    // Metode untuk mendapatkan nama
+    public function getNama() {
+        return $this->nama;
+    }
+}
+
+// Class Dosen yang mewarisi class Pengguna
+class Dosen extends Pengguna {
+    private $mataKuliah;
+
+    // Constructor untuk menginisialisasi nama dan mata kuliah
+    public function __construct($nama, $mataKuliah) {
+        parent::__construct($nama); // Memanggil constructor parent class
+        $this->mataKuliah = $mataKuliah;
+    }
+
+    // Override metode aksesFitur untuk Dosen
+    public function aksesFitur() {
+        echo "Dosen " . $this->getNama() . " dapat mengakses fitur untuk mengelola nilai dan mata kuliah.<br>";
+    }
+
+    // Metode untuk mendapatkan mata kuliah
+    public function getMataKuliah() {
+        return $this->mataKuliah;
+    }
+}
+
+// Class Mahasiswa yang mewarisi class Pengguna
+class Mahasiswa extends Pengguna {
+    private $nim;
+
+    // Constructor untuk menginisialisasi nama dan nim
+    public function __construct($nama, $nim) {
+        parent::__construct($nama); // Memanggil constructor parent class
+        $this->nim = $nim;
+    }
+
+    // Override metode aksesFitur untuk Mahasiswa
+    public function aksesFitur() {
+        echo "Mahasiswa " . $this->getNama() . " dapat mengakses fitur untuk melihat nilai dan jadwal kuliah.<br>";
+    }
+
+    // Metode untuk mendapatkan NIM
+    public function getNim() {
+        return $this->nim;
+    }
+}
+
+// Instansiasi objek dari class Dosen
+$dosen1 = new Dosen("Prih Diantoro Abda'u", "Pemrograman Web");
+
+// Instansiasi objek dari class Mahasiswa
+$mahasiswa1 = new Mahasiswa("Anastasya Putri", "123456789");
+
+// Memanggil metode aksesFitur dari objek Dosen
+$dosen1->aksesFitur();
+
+// Memanggil metode aksesFitur dari objek Mahasiswa
+$mahasiswa1->aksesFitur();
+?>
+```
+
+### Output Pholimorphism
+![image](https://github.com/user-attachments/assets/85c033b1-99f4-4472-9317-41597ad3949e)
+
+
+## Tugas
+
+Tugas:
+
+Buat proyek PHP dengan studi kasus sebagai berikut:
+
+1. Implementasikan kelas Person sebagai induk dari Dosen dan Mahasiswa.
+
+2. Gunakan konsep Inheritance untuk membuat hierarki kelas yang memungkinkan
+Dosen dan Mahasiswa memiliki atribut dan metode yang sesuai dengan perannya.
+
+3. Terapkan Polymorphism dengan membuat metode getRole() di kelas Person dan
+override metode ini di kelas Dosen dan Mahasiswa untuk menampilkan peran yang
+berbeda.
+
+4. Gunakan Encapsulation untuk melindungi atribut nidn di kelas Dosen dan nim di
+kelas Mahasiswa.
+
+5. Buat kelas abstrak Jurnal dan implementasikan konsep Abstraction dengan
+membuat kelas turunan JurnalDosen dan JurnalMahasiswa yang masing-masing
+memiliki cara tersendiri untuk mengelola pengajuan jurnal.
+
+### Langkah langkah Tugas
+
+1. Membuat Kelas Person
+
+Atribut dan Constructor: Kelas Person berisi atribut nama yang dimiliki oleh semua kelas turunan. Constructor digunakan untuk menginisialisasi nama saat objek dibuat.
+
+Metode getRole(): Metode ini bersifat umum di kelas Person dan akan di-override di kelas turunan untuk menampilkan peran spesifik.
+
+Metode getNama(): Metode ini adalah getter untuk mengambil nama dari objek Person.
+
+2. Membuat Kelas Dosen yang Mewarisi dari Person
+
+Atribut NIDN: Kelas Dosen menambahkan atribut khusus nidn (Nomor Induk Dosen Nasional) dan menerapkan encapsulation dengan membuat atribut ini bersifat private. Ada getter dan setter untuk mengakses dan mengubah NIDN.
+
+Constructor: Constructor Dosen menggunakan parent::__construct() untuk memanggil constructor dari kelas induk (Person), sehingga nama juga diinisialisasi. Selain itu, NIDN diinisialisasi di constructor ini.
+
+Polymorphism: Metode getRole() di-override untuk mengembalikan string "Dosen", yang menunjukkan bahwa objek tersebut adalah dosen.
+
+3. Membuat Kelas Mahasiswa yang Mewarisi dari Person
+
+Atribut NIM: Kelas Mahasiswa menambahkan atribut nim (Nomor Induk Mahasiswa) dan menggunakan encapsulation dengan membuatnya bersifat private. Getter dan setter disediakan untuk mengakses dan mengubah NIM.
+
+Constructor: Seperti pada kelas Dosen, constructor Mahasiswa juga memanggil parent::__construct() untuk menginisialisasi nama, sementara NIM diinisialisasi di constructor ini.
+
+Polymorphism: Metode getRole() di-override untuk mengembalikan string "Mahasiswa", yang menandakan peran sebagai mahasiswa.
+
+4. Membuat Kelas Abstrak Jurnal
+
+Atribut judul: Kelas Jurnal memiliki atribut judul yang digunakan untuk menyimpan judul jurnal.
+
+Abstraction: Kelas ini bersifat abstrak dan memiliki metode abstrak submitJurnal(), yang memaksa kelas turunan untuk mengimplementasikan metode ini dengan cara mereka masing-masing.
+
+5. Membuat Kelas JurnalDosen yang Mewarisi dari Jurnal
+
+Atribut NIDN: Kelas ini menambahkan atribut nidn untuk mencatat NIDN dosen yang mengajukan jurnal.
+
+Implementasi submitJurnal(): Kelas ini mengimplementasikan metode abstrak submitJurnal() untuk menampilkan informasi bahwa jurnal telah disubmit oleh dosen dengan NIDN tertentu.
+
+6. Membuat Kelas JurnalMahasiswa yang Mewarisi dari Jurnal
+
+Atribut NIM: Kelas ini menambahkan atribut nim untuk mencatat NIM mahasiswa yang mengajukan jurnal.
+
+Implementasi submitJurnal(): Kelas ini mengimplementasikan metode abstrak submitJurnal() untuk menampilkan informasi bahwa jurnal telah disubmit oleh mahasiswa dengan NIM tertentu.
+
+7. Contoh Penggunaan di Main Program
+
+a. Membuat Objek dari Kelas Dosen:
+Objek dosen1 dibuat dengan nama "Dr. Handoko" dan NIDN "123456789". Lalu dipanggil metode getNama(), getRole(), dan getNidn() untuk menampilkan informasi nama, peran, dan NIDN dosen tersebut.
+
+b. Membuat Objek dari Kelas Mahasiswa:
+Objek mahasiswa1 dibuat dengan nama "Bima" dan NIM "210987654". Metode getNama(), getRole(), dan getNim() dipanggil untuk menampilkan informasi nama, peran, dan NIM mahasiswa.
+
+c. Membuat Objek dari Kelas JurnalDosen:
+Objek jurnalDosen1 dibuat dengan judul jurnal "Studi Kasus PHP OOP" dan NIDN "123456789". Lalu dipanggil metode submitJurnal() untuk menampilkan informasi pengajuan jurnal oleh dosen.
+
+d. Membuat Objek dari Kelas JurnalMahasiswa:
+Objek jurnalMahasiswa1 dibuat dengan judul jurnal "Implementasi Polimorphishm" dan NIM "210987654". Metode submitJurnal() dipanggil untuk menampilkan informasi pengajuan jurnal oleh mahasiswa
+
+### Coding Tugas
+
+```php
+<?php
+// Kelas Person (Super Class)
+class Person {
+    // Atribut yang dimiliki oleh semua kelas turunan
+    protected $nama;
+
+    // Constructor untuk menginisialisasi nama
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    // Metode getRole akan di-override di kelas turunan
+    public function getRole() {
+        return "Peran tidak diketahui";
+    }
+
+    // Getter untuk nama
+    public function getNama() {
+        return $this->nama;
+    }
+}
+
+// Kelas Dosen yang mewarisi dari kelas Person
+class Dosen extends Person {
+    // Encapsulation untuk atribut NIDN
+    private $nidn;
+
+    // Constructor untuk menginisialisasi nama dan NIDN
+    public function __construct($nama, $nidn) {
+        parent::__construct($nama); // Memanggil constructor kelas induk
+        $this->nidn = $nidn;
+    }
+
+    // Polymorphism: Override metode getRole
+    public function getRole() {
+        return "Dosen";
+    }
+
+    // Getter untuk NIDN (Encapsulation)
+    public function getNidn() {
+        return $this->nidn;
+    }
+
+    // Setter untuk NIDN (Encapsulation)
+    public function setNidn($nidn) {
+        $this->nidn = $nidn;
+    }
+}
+
+// Kelas Mahasiswa yang mewarisi dari kelas Person
+class Mahasiswa extends Person {
+    // Encapsulation untuk atribut NIM
+    private $nim;
+
+    // Constructor untuk menginisialisasi nama dan NIM
+    public function __construct($nama, $nim) {
+        parent::__construct($nama); // Memanggil constructor kelas induk
+        $this->nim = $nim;
+    }
+
+    // Polymorphism: Override metode getRole
+    public function getRole() {
+        return "Mahasiswa";
+    }
+
+    // Getter untuk NIM (Encapsulation)
+    public function getNim() {
+        return $this->nim;
+    }
+
+    // Setter untuk NIM (Encapsulation)
+    public function setNim($nim) {
+        $this->nim = $nim;
+    }
+}
+
+// Kelas abstrak Jurnal
+abstract class Jurnal {
+    protected $judul;
+
+    // Constructor untuk menginisialisasi judul jurnal
+    public function __construct($judul) {
+        $this->judul = $judul;
+    }
+
+    // Metode abstrak yang harus diimplementasikan oleh kelas turunan
+    abstract public function submitJurnal();
+}
+
+// Kelas JurnalDosen yang mewarisi dari Jurnal
+class JurnalDosen extends Jurnal {
+    private $nidn;
+
+    // Constructor untuk menginisialisasi judul jurnal dan NIDN dosen
+    public function __construct($judul, $nidn) {
+        parent::__construct($judul);
+        $this->nidn = $nidn;
+    }
+
+    // Implementasi metode abstrak submitJurnal
+    public function submitJurnal() {
+        return "Jurnal dosen dengan judul '" . $this->judul . "' telah disubmit oleh dosen dengan NIDN: " . $this->nidn;
+    }
+}
+
+// Kelas JurnalMahasiswa yang mewarisi dari Jurnal
+class JurnalMahasiswa extends Jurnal {
+    private $nim;
+
+    // Constructor untuk menginisialisasi judul jurnal dan NIM mahasiswa
+    public function __construct($judul, $nim) {
+        parent::__construct($judul);
+        $this->nim = $nim;
+    }
+
+    // Implementasi metode abstrak submitJurnal
+    public function submitJurnal() {
+        return "Jurnal mahasiswa dengan judul '" . $this->judul . "' telah disubmit oleh mahasiswa dengan NIM: " . $this->nim;
+    }
+}
+
+// Contoh Penggunaan (Main Program)
+
+// Membuat objek dari kelas Dosen
+$dosen1 = new Dosen("Dr. Handoko", "123456789");
+echo $dosen1->getNama() . " adalah seorang " . $dosen1->getRole() . " dengan NIDN: " . $dosen1->getNidn() . "<br><br>";
+
+// Membuat objek dari kelas Mahasiswa
+$mahasiswa1 = new Mahasiswa("Bima", "210987654");
+echo $mahasiswa1->getNama() . " adalah seorang " . $mahasiswa1->getRole() . " dengan NIM: " . $mahasiswa1->getNim() . "<br><br>";
+
+// Membuat objek dari kelas JurnalDosen
+$jurnalDosen1 = new JurnalDosen("Studi Kasus PHP OOP", "123456789");
+echo $jurnalDosen1->submitJurnal() . "<br><br>";
+
+// Membuat objek dari kelas JurnalMahasiswa
+$jurnalMahasiswa1 = new JurnalMahasiswa("Implementasi Polimorphishm", "210987654");
+echo $jurnalMahasiswa1->submitJurnal() . "<br><br>";
+?>
+
+```
+
+#### Output Tugas
+![image](https://github.com/user-attachments/assets/7d309751-fa47-4f66-b489-65720b70eefa)
