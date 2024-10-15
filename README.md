@@ -31,7 +31,7 @@ o Ubah nilai atribut nim dari objek Mahasiswa menggunakan metode setter.
 o Tampilkan data mahasiswa yang sudah diperbarui dengan memanggil metode
 tampilkanData().
 
-README
+### README
 
 Class Mahasiswa merupakan class yang terdiri ats nama, nim, dan jurusan. Dalam metode ini terdapat 3 metode yang dilakukan
 
@@ -41,13 +41,13 @@ Class Mahasiswa merupakan class yang terdiri ats nama, nim, dan jurusan. Dalam m
 
 3. Serta setter yang digunakan untuk mengubah nim
 
-Coding dalam class mahasiswa
+### Coding dalam class mahasiswa
 ![image](https://github.com/user-attachments/assets/ac33eb1c-840c-4c06-b776-7d60dc2169c4)
 ![image](https://github.com/user-attachments/assets/807c7ba0-e037-4750-9cd0-dd478eb3dd63)
 ![image](https://github.com/user-attachments/assets/2bc9ba53-30f1-4c79-bd3f-4ce3a9062527)
 ![image](https://github.com/user-attachments/assets/081ec10f-4fdf-4497-8911-013bf3c2d33e)
 
-Output yanng dihasilkan
+### Output yanng dihasilkan
 
 ![image](https://github.com/user-attachments/assets/6f356090-1c74-4964-bab7-e2ae647cbcf5)
 
@@ -71,7 +71,7 @@ menampilkan informasi tersebut.
 4. Buat dokumentasi proyek dan unggah ke repository GitHub, menjelaskan proses
 pembuatan kelas, penggunaan metode, dan hasil output.
 
-README
+### README
 
 1. Membuat Class Dosen
 
@@ -86,7 +86,7 @@ Pada langkah ini, kita menambahkan metode tampilkanDosen() untuk menampilkan dat
 
 Langkah selanjutnya adalah membuat objek dari class Dosen dan menampilkan data dengan memanggil metode tampilkanDosen().i sini kita membuat objek Dosen bernama $dosen1 dengan data dosen "Prih Diantoro Abda`u", NIP "19765432", dan mata kuliah "Pemrograman Web". Kemudian, kita memanggil metode tampilkanDosen() untuk menampilkan data dosen.
 
-Coding Class Dosen
+### Coding Class Dosen
 
 #### Class Dosen
 ![image](https://github.com/user-attachments/assets/f5b2199d-2580-4fb7-b326-5174558dbdac)
@@ -181,7 +181,7 @@ Saat objek dibuat, constructor dipanggil dengan argumen "Budi" (nama), "123456" 
 5. Menampilkan Data Mahasiswa
    Kode ini memanggil metode tampilkanData pada objek $mahasiswa1 untuk mendapatkan string yang berisi informasi mahasiswa, kemudian mencetaknya menggunakan echo.
 
-## Coding Object dan Class
+### Coding Object dan Class
 
 ```php
 <?php
@@ -208,10 +208,10 @@ $mahasiswa1 = new Mahasiswa("Budi", "123456", "Informatika");
 echo $mahasiswa1->tampilkanData(); // Menampilkan data mahasiswa
 ?>
 ```
-## Output
+### Output
 ![image](https://github.com/user-attachments/assets/cc89f3ab-b0aa-4803-bea2-47c7a06246af)
 
-## Langkah Langkah Encapsulation
+### Langkah Langkah Encapsulation
 
 1. Mendeklarasikan Kelas Mahasiswa
 
@@ -240,7 +240,7 @@ Constructor dipanggil dengan argumen "Budi" (nama), "123456" (NIM), dan "Informa
 5. Mengakses Data Menggunakan Getter
    Kode ini memanggil metode getNama() pada objek $mahasiswa1, yang akan mengembalikan nilai dari atribut $nama, dan mencetaknya menggunakan echo.
 
-## Coding Encapsulation
+### Coding Encapsulation
 
 ```php
 <?php
@@ -289,10 +289,10 @@ $mahasiswa1 = new Mahasiswa("Budi", "123456", "Informatika");
 echo $mahasiswa1->getNama(); // Mengakses nama menggunakan metode getter
 ?>
 ```
-## Output
+### Output
 ![image](https://github.com/user-attachments/assets/66420d80-0f00-4a85-9ab0-5eab651d5329)
 
-## Langkah Langkah Inheritance
+### Langkah Langkah Inheritance
 1. Mendeklarasikan Kelas Pengguna
    Kelas Pengguna dideklarasikan sebagai kelas induk yang memiliki atribut protected bernama $nama.
 
@@ -323,7 +323,7 @@ Metode getMataKuliah() mengembalikan nilai dari atribut $mataKuliah.
 Kemudian memanggil metode getMataKuliah() dari kelas Dosen untuk mendapatkan nama mata kuliah.
 Hasil dari kedua metode ini digabungkan dan ditampilkan dengan echo.
 
-## Coding Inheritance
+### Coding Inheritance
 ```php
 <?php
 class Pengguna {
@@ -360,10 +360,10 @@ $dosen1 = new Dosen("Dr. Susi", "Pemrograman Web");
 echo $dosen1->getNama() . ", Mata Kuliah: " . $dosen1->getMataKuliah(); // Menampilkan data dosen
 ?>
 ```
-## Output
+### Output
 ![image](https://github.com/user-attachments/assets/28bff471-bb5d-4682-b58f-0dc0e0214006)
 
-## Langkah Langkah Pholymorphism
+### Langkah Langkah Pholymorphism
 1. Mendeklarasikan Kelas Pengguna
    Kelas Pengguna dideklarasikan dengan atribut protected bernama $nama, yang dapat diakses oleh kelas itu sendiri dan kelas turunannya.
 Constructor menerima parameter $nama dan menginisialisasi atribut tersebut.
@@ -387,7 +387,7 @@ Memanggil metode aksesFitur() dari objek $dosen1 akan mengembalikan string yang 
 Objek $mahasiswa1 dari kelas Mahasiswa dibuat dengan nama "Budi Santoso", NIM "123456", dan jurusan "Informatika".
 Memanggil metode aksesFitur() dari objek $mahasiswa1 akan mengembalikan string yang menyatakan bahwa mahasiswa mengakses fitur mahasiswa.
 
-## Coding Pholymorphism
+### Coding Pholymorphism
 ```php
 <?php
 class Pengguna {
@@ -437,10 +437,10 @@ $mahasiswa1 = new Mahasiswa("Budi Santoso", "123456", "Informatika");
 echo $mahasiswa1->aksesFitur(); // Output: Mahasiswa Budi Santoso mengakses fitur mahasiswa
 ?>
 ```
-## Output Pholiymorphosm
+### Output Pholiymorphosm
 ![image](https://github.com/user-attachments/assets/c78b7504-cf73-4cfe-8dbf-5b04335e6d1d)
 
-## Langkah Langkah Abstraction
+### Langkah Langkah Abstraction
 
 1. Mendeklarasikan Kelas Abstrak Pengguna
    Kelas Pengguna dideklarasikan sebagai kelas abstrak dengan kata kunci abstract. Ini berarti kelas ini tidak dapat diinstansiasi secara langsung dan hanya dapat digunakan sebagai kelas dasar untuk kelas turunan.
@@ -466,7 +466,7 @@ Memanggil metode aksesFitur() dari objek $dosen1 akan mengembalikan string yang 
 Objek $mahasiswa1 dari kelas Mahasiswa dibuat dengan nama "Budi Santoso", NIM "123456", dan jurusan "Informatika".
 Memanggil metode aksesFitur() dari objek $mahasiswa1 akan mengembalikan string yang menjelaskan bahwa mahasiswa mengakses fitur terkait informasi mereka.
 
-## Coding Abstraction
+### Coding Abstraction
 ```php
 <?php
 // Abstract class Pengguna yang mendefinisikan struktur dasar untuk pengguna
@@ -535,5 +535,8 @@ echo $mahasiswa1->aksesFitur(); // Output: Mahasiswa Budi Santoso (123456) dari 
 ?>
 
 ```
-## Output
+### Output
 ![image](https://github.com/user-attachments/assets/7b898feb-7d8f-4351-a634-c8deeadccade)
+
+## Jobsheet 3
+
