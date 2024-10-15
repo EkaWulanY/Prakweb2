@@ -181,7 +181,7 @@ Saat objek dibuat, constructor dipanggil dengan argumen "Budi" (nama), "123456" 
 5. Menampilkan Data Mahasiswa
    Kode ini memanggil metode tampilkanData pada objek $mahasiswa1 untuk mendapatkan string yang berisi informasi mahasiswa, kemudian mencetaknya menggunakan echo.
 
-## Coding JS 2
+## Coding Object dan Class
 
 ```php
 <?php
@@ -208,6 +208,8 @@ $mahasiswa1 = new Mahasiswa("Budi", "123456", "Informatika");
 echo $mahasiswa1->tampilkanData(); // Menampilkan data mahasiswa
 ?>
 ```
+## Output
+![image](https://github.com/user-attachments/assets/cc89f3ab-b0aa-4803-bea2-47c7a06246af)
 
 ## Langkah Langkah Encapsulation
 
@@ -238,7 +240,7 @@ Constructor dipanggil dengan argumen "Budi" (nama), "123456" (NIM), dan "Informa
 5. Mengakses Data Menggunakan Getter
    Kode ini memanggil metode getNama() pada objek $mahasiswa1, yang akan mengembalikan nilai dari atribut $nama, dan mencetaknya menggunakan echo.
 
-## Coding PHP
+## Coding Encapsulation
 
 ```php
 <?php
@@ -287,6 +289,8 @@ $mahasiswa1 = new Mahasiswa("Budi", "123456", "Informatika");
 echo $mahasiswa1->getNama(); // Mengakses nama menggunakan metode getter
 ?>
 ```
+## Output
+![image](https://github.com/user-attachments/assets/66420d80-0f00-4a85-9ab0-5eab651d5329)
 
 ## Langkah Langkah Inheritance
 1. Mendeklarasikan Kelas Pengguna
@@ -299,3 +303,237 @@ Metode getNama() mengembalikan nilai atribut $nama.
 
 2. Mendeklarasikan Kelas Dosen (Pewarisan dari Pengguna)
    
+Kelas Dosen adalah kelas turunan dari kelas Pengguna. Kelas ini mewarisi atribut dan metode dari kelas Pengguna.
+Kelas ini memiliki atribut tambahan $mataKuliah yang bersifat private (hanya bisa diakses dari dalam kelas Dosen).
+Constructor kelas Dosen menerima dua parameter: $nama dan $mataKuliah.
+
+    parent::__construct($nama) digunakan untuk memanggil constructor dari kelas induk (Pengguna) agar atribut $nama diinisialisasi dengan benar.
+    Atribut $mataKuliah diinisialisasi dengan nilai dari parameter $mataKuliah.
+
+Metode getMataKuliah() mengembalikan nilai dari atribut $mataKuliah.
+
+3. Instansiasi Objek Dosen
+   Di sini, kita membuat objek baru dari kelas Dosen dengan nama $dosen1. Constructor dipanggil dengan argumen "Dr. Susi" (nama dosen) dan "Pemrograman Web" (mata kuliah).
+
+    Constructor dari kelas Dosen akan memanggil constructor dari kelas induk Pengguna untuk menginisialisasi nama dosen.
+   
+5. Menampilkan Data Dosen
+   
+   Kode ini memanggil metode getNama() dari kelas induk (Pengguna) untuk mendapatkan nama dosen.
+Kemudian memanggil metode getMataKuliah() dari kelas Dosen untuk mendapatkan nama mata kuliah.
+Hasil dari kedua metode ini digabungkan dan ditampilkan dengan echo.
+
+## Coding Inheritance
+```php
+<?php
+class Pengguna {
+    protected $nama;
+
+    // Constructor untuk menginisialisasi atribut
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    // Metode untuk mendapatkan nama
+    public function getNama() {
+        return $this->nama;
+    }
+}
+
+class Dosen extends Pengguna {
+    private $mataKuliah;
+
+    // Constructor untuk menginisialisasi atribut
+    public function __construct($nama, $mataKuliah) {
+        parent::__construct($nama); // Memanggil constructor kelas induk
+        $this->mataKuliah = $mataKuliah;
+    }
+
+    // Metode untuk mendapatkan mata kuliah
+    public function getMataKuliah() {
+        return $this->mataKuliah;
+    }
+}
+
+// Instansiasi objek Dosen
+$dosen1 = new Dosen("Dr. Susi", "Pemrograman Web");
+echo $dosen1->getNama() . ", Mata Kuliah: " . $dosen1->getMataKuliah(); // Menampilkan data dosen
+?>
+```
+## Output
+![image](https://github.com/user-attachments/assets/28bff471-bb5d-4682-b58f-0dc0e0214006)
+
+## Langkah Langkah Pholymorphism
+1. Mendeklarasikan Kelas Pengguna
+   Kelas Pengguna dideklarasikan dengan atribut protected bernama $nama, yang dapat diakses oleh kelas itu sendiri dan kelas turunannya.
+Constructor menerima parameter $nama dan menginisialisasi atribut tersebut.
+Metode aksesFitur() mengembalikan string "Akses fitur umum", yang menunjukkan fitur yang bisa diakses oleh semua pengguna.
+
+2. Mendeklarasikan Kelas Dosen (Pewarisan dari Pengguna)
+   Kelas Dosen mewarisi dari kelas Pengguna. Ini berarti Dosen dapat menggunakan atribut dan metode dari Pengguna.
+Kelas ini memiliki atribut tambahan $mataKuliah yang bersifat private.
+Constructor kelas Dosen memanggil constructor dari kelas induk untuk menginisialisasi nama, serta menginisialisasi atribut $mataKuliah.
+Metode aksesFitur() di kelas Dosen mengoverride metode yang sama dari kelas Pengguna, dengan memberikan implementasi khusus yang menyatakan bahwa dosen mengakses fitur dosen.
+
+3. Mendeklarasikan Kelas Mahasiswa (Pewarisan dari Pengguna)
+   Kelas Mahasiswa juga mewarisi dari kelas Pengguna.
+Kelas ini memiliki atribut tambahan $nim dan $jurusan, keduanya bersifat private.
+Constructor memanggil constructor dari kelas induk dan menginisialisasi atribut-atributnya.
+Metode aksesFitur() di kelas Mahasiswa juga mengoverride metode dari kelas Pengguna, dengan memberikan implementasi yang menyatakan bahwa mahasiswa mengakses fitur mahasiswa.
+
+4. Instansiasi Objek Dosen dan Mahasiswa
+   Objek $dosen1 dari kelas Dosen dibuat dengan nama "Dr. Andi" dan mata kuliah "Pemrograman Web".
+Memanggil metode aksesFitur() dari objek $dosen1 akan mengembalikan string yang menyatakan bahwa dosen mengakses fitur dosen.
+Objek $mahasiswa1 dari kelas Mahasiswa dibuat dengan nama "Budi Santoso", NIM "123456", dan jurusan "Informatika".
+Memanggil metode aksesFitur() dari objek $mahasiswa1 akan mengembalikan string yang menyatakan bahwa mahasiswa mengakses fitur mahasiswa.
+
+## Coding Pholymorphism
+```php
+<?php
+class Pengguna {
+    protected $nama;
+
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    public function aksesFitur() {
+        return "Akses fitur umum" ."<br>";
+    }
+}
+
+class Dosen extends Pengguna {
+    private $mataKuliah;
+
+    public function __construct($nama, $mataKuliah) {
+        parent::__construct($nama);
+        $this->mataKuliah = $mataKuliah;
+    }
+
+    public function aksesFitur() {
+        return "Dosen $this->nama mengakses fitur dosen" ."<br>";
+    }
+}
+
+class Mahasiswa extends Pengguna {
+    private $nim;
+    private $jurusan;
+
+    public function __construct($nama, $nim, $jurusan) {
+        parent::__construct($nama);
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+
+    public function aksesFitur() {
+        return "Mahasiswa $this->nama mengakses fitur mahasiswa";
+    }
+}
+
+$dosen1 = new Dosen("Dr. Andi", "Pemrograman Web");
+echo $dosen1->aksesFitur(); // Output: Dosen Dr. Andi mengakses fitur dosen
+
+$mahasiswa1 = new Mahasiswa("Budi Santoso", "123456", "Informatika");
+echo $mahasiswa1->aksesFitur(); // Output: Mahasiswa Budi Santoso mengakses fitur mahasiswa
+?>
+```
+## Output Pholiymorphosm
+![image](https://github.com/user-attachments/assets/c78b7504-cf73-4cfe-8dbf-5b04335e6d1d)
+
+## Langkah Langkah Abstraction
+
+1. Mendeklarasikan Kelas Abstrak Pengguna
+   Kelas Pengguna dideklarasikan sebagai kelas abstrak dengan kata kunci abstract. Ini berarti kelas ini tidak dapat diinstansiasi secara langsung dan hanya dapat digunakan sebagai kelas dasar untuk kelas turunan.
+Atribut protected $nama diinisialisasi melalui constructor, yang dapat diakses oleh kelas yang mewarisinya.
+Metode aksesFitur() dideklarasikan sebagai metode abstrak. Kelas turunan wajib mengimplementasikan metode ini, sehingga setiap jenis pengguna dapat memiliki cara akses fitur yang berbeda.
+
+2. Mendeklarasikan Kelas Dosen (Pewarisan dari Pengguna)
+   Kelas Dosen mewarisi dari kelas Pengguna.
+Kelas ini memiliki atribut privat $mataKuliah.
+Constructor kelas Dosen memanggil constructor kelas induk untuk menginisialisasi $nama dan menginisialisasi $mataKuliah.
+Metode aksesFitur() diimplementasikan sesuai dengan kebutuhan kelas Dosen, yang menjelaskan bahwa dosen mengakses fitur tertentu terkait dengan mata kuliah mereka.
+
+3. Mendeklarasikan Kelas Mahasiswa (Pewarisan dari Pengguna)
+   Kelas Mahasiswa juga mewarisi dari kelas Pengguna.
+Kelas ini memiliki atribut privat $nim dan $jurusan.
+Constructor memanggil constructor dari kelas induk untuk menginisialisasi $nama, serta menginisialisasi $nim dan $jurusan.
+Metode aksesFitur() diimplementasikan untuk menjelaskan bahwa mahasiswa mengakses fitur yang berkaitan dengan informasi mereka.
+
+4. Instansiasi Objek Dosen dan Mahasiswa
+   Objek $dosen1 dari kelas Dosen dibuat dengan nama "Dr. Andi" dan mata kuliah "Pemrograman Web".
+Memanggil metode aksesFitur() dari objek $dosen1 akan mengembalikan string yang menyatakan dosen mengakses fitur dosen yang berkaitan dengan mata kuliah mereka.
+
+Objek $mahasiswa1 dari kelas Mahasiswa dibuat dengan nama "Budi Santoso", NIM "123456", dan jurusan "Informatika".
+Memanggil metode aksesFitur() dari objek $mahasiswa1 akan mengembalikan string yang menjelaskan bahwa mahasiswa mengakses fitur terkait informasi mereka.
+
+## Coding Abstraction
+```php
+<?php
+// Abstract class Pengguna yang mendefinisikan struktur dasar untuk pengguna
+abstract class Pengguna {
+    // Properti protected, bisa diakses oleh kelas turunan
+    protected $nama;
+
+    // Konstruktor untuk inisialisasi properti $nama
+    public function __construct($nama) {
+        $this->nama = $nama;
+    }
+
+    // Method abstrak yang harus diimplementasikan oleh kelas turunan
+    abstract public function aksesFitur();
+}
+
+// Kelas Dosen yang mewarisi dari Pengguna
+class Dosen extends Pengguna{
+    // Properti khusus Dosen
+    private $mataKuliah;
+
+    // Konstruktor untuk inisialisasi properti $nama dan $mataKuliah
+    public function __construct($nama, $mataKuliah) {
+        // Memanggil konstruktor dari kelas induk (Pengguna)
+        parent::__construct($nama);
+        $this->mataKuliah = $mataKuliah;
+    }
+
+    // Implementasi method abstrak dari Pengguna
+    public function aksesFitur() {
+        // Mengembalikan string yang menunjukkan dosen mengakses fitur
+        return "Dosen $this->nama mengakses fitur dosen untuk mata kuliah $this->mataKuliah.<br>";
+    }
+}
+
+// Kelas Mahasiswa yang mewarisi dari Pengguna
+class Mahasiswa extends Pengguna{
+    // Properti khusus Mahasiswa
+    private $nim;
+    private $jurusan;
+
+    // Konstruktor untuk inisialisasi properti $nama, $nim, dan $jurusan
+    public function __construct($nama, $nim, $jurusan) {
+        // Memanggil konstruktor dari kelas induk (Pengguna)
+        parent::__construct($nama);
+        $this->nim = $nim;
+        $this->jurusan = $jurusan;
+    }
+
+    // Implementasi method abstrak dari Pengguna
+    public function aksesFitur() {
+        // Mengembalikan string yang menunjukkan mahasiswa mengakses fitur
+        return "Mahasiswa $this->nama ($this->nim) dari jurusan $this->jurusan mengakses fitur mahasiswa.<br>";
+    }
+}
+
+// Membuat objek Dosen
+$dosen1 = new Dosen("Dr. Andi", "Pemrograman Web");
+// Memanggil method aksesFitur() dan mencetak hasilnya
+echo $dosen1->aksesFitur(); // Output: Dosen Dr. Andi mengakses fitur dosen untuk mata kuliah Pemrograman Web.
+
+// Membuat objek Mahasiswa
+$mahasiswa1 = new Mahasiswa("Budi Santoso", "123456", "Informatika");
+// Memanggil method aksesFitur() dan mencetak hasilnya
+echo $mahasiswa1->aksesFitur(); // Output: Mahasiswa Budi Santoso (123456) dari jurusan Informatika mengakses fitur mahasiswa.
+?>
+
+```
+## Output
+![image](https://github.com/user-attachments/assets/7b898feb-7d8f-4351-a634-c8deeadccade)
